@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Golem — Coaching Lean, Agile & RTE en abonnement</title>
+<meta name="description" content="Golem : plateforme SaaS de coaching Lean, Agile et RTE. Coachs certifiés, sessions en visio, abonnement mensuel sans engagement.">
+<style>
+:root{
+  --primary:#4f46e5;--primary-dark:#3730a3;--primary-light:#eef2ff;
+  --accent:#10b981;--accent-light:#d1fae5;
+  --ink:#0f172a;--ink-soft:#475569;--ink-faint:#94a3b8;
+  --bg:#ffffff;--bg-soft:#f8fafc;--border:#e2e8f0;
+  --radius:14px;--shadow:0 4px 24px rgba(15,23,42,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+h1,h2,h3{line-height:1.2}
+section{padding:80px 0}
+.tag{display:inline-block;background:var(--primary-light);color:var(--primary);font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:16px}
+.btn{display:inline-block;padding:14px 28px;border-radius:10px;font-weight:600;text-decoration:none;font-size:1rem;transition:all .2s;cursor:pointer;border:none}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-dark);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--primary);border:2px solid var(--primary)}
+.btn-ghost:hover{background:var(--primary-light)}
+
+/* NAV */
+nav{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);z-index:100}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-size:1.4rem;font-weight:800;color:var(--ink);text-decoration:none}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{text-decoration:none;color:var(--ink-soft);font-weight:500;font-size:.95rem}
+.nav-links a:hover{color:var(--primary)}
+.nav-links .btn{padding:10px 20px;font-size:.9rem}
+@media(max-width:760px){.nav-links a:not(.btn){display:none}}
+
+/* HERO */
+.hero{padding:90px 0 70px;background:linear-gradient(180deg,var(--primary-light) 0%,#fff 100%)}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800;margin-bottom:20px}
+.hero h1 em{color:var(--primary);font-style:normal}
+.hero p.lead{font-size:1.15rem;color:var(--ink-soft);margin-bottom:32px;max-width:540px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero-note{margin-top:14px;font-size:.85rem;color:var(--ink-faint)}
+.hero-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px}
+.hero-card h3{font-size:1rem;margin-bottom:18px;color:var(--ink-soft)}
+.metric{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)}
+.metric:last-child{border-bottom:none}
+.metric b{font-size:1.3rem;color:var(--primary)}
+.metric span{color:var(--ink-soft);font-size:.92rem}
+
+/* TRUST */
+.trust{padding:36px 0;border-bottom:1px solid var(--border)}
+.trust p{text-align:center;color:var(--ink-faint);font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:18px}
+.badges{display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
+.badge{background:var(--bg-soft);border:1px solid var(--border);border-radius:8px;padding:10px 20px;font-weight:600;color:var(--ink-soft);font-size:.9rem}
+
+/* OFFERS */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:860px){.grid-3{grid-template-columns:1fr}}
+.section-head{text-align:center;max-width:640px;margin:0 auto 52px}
+.section-head h2{font-size:clamp(1.6rem,3vw,2.3rem);font-weight:800;margin-bottom:14px}
+.section-head p{color:var(--ink-soft);font-size:1.05rem}
+.card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:32px;transition:all .25s}
+.card:hover{box-shadow:var(--shadow);transform:translateY(-4px)}
+.card .icon{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:18px}
+.icon-lean{background:var(--accent-light)}
+.icon-agile{background:var(--primary-light)}
+.icon-rte{background:#fef3c7}
+.card h3{font-size:1.2rem;margin-bottom:10px}
+.card p{color:var(--ink-soft);font-size:.95rem;margin-bottom:16px}
+.card ul{list-style:none}
+.card ul li{padding:6px 0 6px 26px;position:relative;font-size:.92rem;color:var(--ink-soft)}
+.card ul li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700}
+
+/* HOW */
+.how{background:var(--bg-soft)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+@media(max-width:860px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.steps{grid-template-columns:1fr}}
+.step{text-align:center}
+.step .num{width:48px;height:48px;border-radius:50%;background:var(--primary);color:#fff;font-weight:800;font-size:1.2rem;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.step h4{margin-bottom:8px;font-size:1.05rem}
+.step p{color:var(--ink-soft);font-size:.9rem}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+@media(max-width:860px){.pricing-grid{grid-template-columns:1fr}}
+.price-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:36px 30px;display:flex;flex-direction:column;position:relative}
+.price-card.featured{border:2px solid var(--primary);box-shadow:var(--shadow)}
+.popular{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--primary);color:#fff;font-size:.75rem;font-weight:700;padding:5px 16px;border-radius:999px;white-space:nowrap}
+.price-card h3{font-size:1.15rem;margin-bottom:6px}
+.price-card .for{color:var(--ink-faint);font-size:.85rem;margin-bottom:20px}
+.price{font-size:2.4rem;font-weight:800;margin-bottom:4px}
+.price small{font-size:1rem;font-weight:500;color:var(--ink-faint)}
+.price-card .billing{color:var(--ink-faint);font-size:.82rem;margin-bottom:24px}
+.price-card ul{list-style:none;margin-bottom:28px;flex:1}
+.price-card ul li{padding:7px 0 7px 26px;position:relative;font-size:.92rem;color:var(--ink-soft)}
+.price-card ul li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700}
+.price-card .btn{width:100%;text-align:center}
+
+/* TESTIMONIALS */
+.testi{background:var(--bg-soft)}
+.quote{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:28px}
+.quote p{font-style:italic;color:var(--ink-soft);margin-bottom:18px;font-size:.95rem}
+.quote .who{display:flex;align-items:center;gap:12px}
+.avatar{width:42px;height:42px;border-radius:50%;background:var(--primary-light);color:var(--primary);font-weight:700;display:flex;align-items:center;justify-content:center}
+.who b{display:block;font-size:.92rem}
+.who span{font-size:.8rem;color:var(--ink-faint)}
+
+/* FAQ */
+details{border:1px solid var(--border);border-radius:10px;margin-bottom:12px;background:#fff}
+summary{padding:18px 22px;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:"+";font-size:1.3rem;color:var(--primary);transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details .answer{padding:0 22px 18px;color:var(--ink-soft);font-size:.95rem}
+
+/* CONTACT */
+.contact{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);color:#fff}
+.contact .section-head h2,.contact .section-head p{color:#fff}
+.contact .section-head p{opacity:.85}
+form{max-width:560px;margin:0 auto;background:#fff;border-radius:var(--radius);padding:36px;box-shadow:var(--shadow)}
+.field{margin-bottom:18px}
+.field label{display:block;font-weight:600;font-size:.88rem;margin-bottom:6px;color:var(--ink)}
+.field input,.field select,.field textarea{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:8px;font-size:.95rem;font-family:inherit;color:var(--ink)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--primary)}
+#form-success{display:none;text-align:center;padding:20px;background:var(--accent-light);border-radius:10px;color:#065f46;font-weight:600;margin-top:16px}
+
+/* FOOTER */
+footer{padding:40px 0;border-top:1px solid var(--border)}
+.foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.foot p{color:var(--ink-faint);font-size:.85rem}
+.foot-links{display:flex;gap:20px}
+.foot-links a{color:var(--ink-soft);text-decoration:none;font-size:.85rem}
+.foot-links a:hover{color:var(--primary)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a class="logo" href="#">Go<span>lem</span></a>
+    <div class="nav-links">
+      <a href="#offres">Offres</a>
+      <a href="#methode">Méthode</a>
+      <a href="#tarifs">Tarifs</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn-primary" href="#contact">Essai gratuit</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="tag">Coaching Lean · Agile · RTE</span>
+      <h1>Transformez vos équipes avec un coach expert, <em>en abonnement</em>.</h1>
+      <p class="lead">Golem connecte vos équipes à des coachs certifiés Lean, Scrum et SAFe. Sessions en visio, plans d'action concrets, résultats mesurables — sans engagement.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#tarifs">Voir les tarifs</a>
+        <a class="btn btn-ghost" href="#contact">Réserver une démo</a>
+      </div>
+      <p class="hero-note">✓ 1ère session découverte offerte · ✓ Sans engagement · ✓ Annulation en 1 clic</p>
+    </div>
+    <div class="hero-card">
+      <h3>Résultats moyens constatés chez nos clients</h3>
+      <div class="metric"><span>Vélocité des équipes</span><b>+32%</b></div>
+      <div class="metric"><span>Lead time réduit</span><b>−41%</b></div>
+      <div class="metric"><span>Satisfaction équipe (eNPS)</span><b>+25 pts</b></div>
+      <div class="metric"><span>PI Planning réussis</span><b>96%</b></div>
+    </div>
+  </div>
+</header>
+
+<div class="trust">
+  <div class="container">
+    <p>Des coachs certifiés par les référentiels du marché</p>
+    <div class="badges">
+      <div class="badge">SAFe® RTE</div>
+      <div class="badge">SAFe® SPC</div>
+      <div class="badge">PSM / CSM</div>
+      <div class="badge">Lean Six Sigma Black Belt</div>
+      <div class="badge">ICAgile</div>
+    </div>
+  </div>
+</div>
+
+<section id="offres">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag">Nos offres</span>
+      <h2>Trois expertises, un seul abonnement</h2>
+      <p>Choisissez le coaching adapté à votre maturité et vos enjeux, ou combinez-les selon vos besoins.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon icon-lean">⚙️</div>
+        <h3>Coaching Lean</h3>
+        <p>Éliminez les gaspillages et fluidifiez vos flux de valeur.</p>
+        <ul>
+          <li>Value Stream Mapping</li>
+          <li>Kaizen & amélioration continue</li>
+          <li>Management visuel & Kanban</li>
+          <li>Réduction du lead time</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="icon icon-agile">🔄</div>
+        <h3>Coaching Agile</h3>
+        <p>Faites passer vos équipes Scrum/Kanban au niveau supérieur.</p>
+        <ul>
+          <li>Coaching Scrum Master & PO</li>
+          <li>Facilitation de rituels</li>
+          <li>Métriques agiles & vélocité</li>
+          <li>Culture produit & delivery</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="icon icon-rte">🚀</div>
+        <h3>Coaching RTE / SAFe</h3>
+        <p>Réussissez votre passage à l'échelle avec un RTE aguerri.</p>
+        <ul>
+          <li>Préparation & animation PI Planning</li>
+          <li>Coaching de l'Agile Release Train</li>
+          <li>Synchronisation multi-équipes</li>
+          <li>Mentorat de futurs RTE</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="methode" class="how">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag">Comment ça marche</span>
+      <h2>Opérationnel en moins d'une semaine</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><h4>Diagnostic</h4><p>Session découverte gratuite de 45 min pour évaluer votre maturité et vos enjeux.</p></div>
+      <div class="step"><div class="num">2</div><h4>Matching</h4><p>Nous vous attribuons le coach certifié le plus adapté à votre contexte.</p></div>
+      <div class="step"><div class="num">3</div><h4>Coaching</h4><p>Sessions régulières en visio, ateliers d'équipe et plan d'action suivi.</p></div>
+      <div class="step"><div class="num">4</div><h4>Mesure</h4><p>Tableau de bord des progrès : vélocité, lead time, satisfaction équipe.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="tarifs">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag">Tarifs</span>
+      <h2>Un abonnement simple, sans engagement</h2>
+      <p>Facturation mensuelle. Changez de plan ou annulez à tout moment.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h3>Starter</h3>
+        <p class="for">Pour une équipe qui démarre</p>
+        <div class="price">390€<small> /mois</small></div>
+        <p class="billing">HT, sans engagement</p>
+        <ul>
+          <li>2 sessions de coaching / mois (1h)</li>
+          <li>1 expertise au choix (Lean, Agile ou RTE)</li>
+          <li>Support par e-mail sous 48h</li>
+          <li>Bibliothèque de ressources & templates</li>
+        </ul>
+        <a class="btn btn-ghost" href="#contact">Commencer</a>
+      </div>
+      <div class="price-card featured">
+        <div class="popular">Le plus populaire</div>
+        <h3>Pro</h3>
+        <p class="for">Pour une équipe en transformation</p>
+        <div class="price">990€<small> /mois</small></div>
+        <p class="billing">HT, sans engagement</p>
+        <ul>
+          <li>6 sessions de coaching / mois</li>
+          <li>Toutes les expertises incluses</li>
+          <li>1 atelier d'équipe / mois (VSM, rétro, PI prep)</li>
+          <li>Tableau de bord de progression</li>
+          <li>Support prioritaire sous 24h</li>
+        </ul>
+        <a class="btn btn-primary" href="#contact">Essayer gratuitement</a>
+      </div>
+      <div class="price-card">
+        <h3>Entreprise</h3>
+        <p class="for">Pour plusieurs équipes ou un train SAFe</p>
+        <div class="price">Sur devis</div>
+        <p class="billing">Engagement annuel possible</p>
+        <ul>
+          <li>Sessions illimitées multi-équipes</li>
+          <li>Coach RTE dédié pour votre ART</li>
+          <li>Accompagnement PI Planning sur site</li>
+          <li>Formation & certification des équipes</li>
+          <li>Customer Success Manager dédié</li>
+        </ul>
+        <a class="btn btn-ghost" href="#contact">Nous contacter</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testi">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag">Témoignages</span>
+      <h2>Ils ont transformé leurs équipes</h2>
+    </div>
+    <div class="grid-3">
+      <div class="quote">
+        <p>« Notre PI Planning était un chaos. En 3 mois avec notre coach RTE Golem, on est passés à des trains synchronisés et prévisibles. »</p>
+        <div class="who"><div class="avatar">SM</div><div><b>Sophie M.</b><span>VP Engineering, scale-up fintech</span></div></div>
+      </div>
+      <div class="quote">
+        <p>« Le format abonnement change tout : un coach disponible chaque semaine, sans la lourdeur d'une mission de conseil classique. »</p>
+        <div class="who"><div class="avatar">KD</div><div><b>Karim D.</b><span>Head of Product, e-commerce</span></div></div>
+      </div>
+      <div class="quote">
+        <p>« Le VSM animé par notre coach Lean a révélé 40% de temps d'attente dans notre flux. Lead time divisé par deux en un trimestre. »</p>
+        <div class="who"><div class="avatar">LB</div><div><b>Laure B.</b><span>Directrice des opérations, industrie</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container" style="max-width:760px">
+    <div class="section-head">
+      <span class="tag">FAQ</span>
+      <h2>Questions fréquentes</h2>
+    </div>
+    <details>
+      <summary>Comment se déroulent les sessions de coaching ?</summary>
+      <div class="answer">En visioconférence (Teams, Meet ou Zoom), aux créneaux que vous choisissez. Chaque session se conclut par un plan d'action concret. Les ateliers d'équipe peuvent aussi se faire sur site (plan Entreprise).</div>
+    </details>
+    <details>
+      <summary>Les coachs sont-ils certifiés ?</summary>
+      <div class="answer">Oui. Tous nos coachs détiennent au minimum une certification reconnue (SAFe RTE/SPC, PSM, CSM, Lean Six Sigma Black Belt, ICAgile) et justifient d'au moins 5 ans d'expérience terrain.</div>
+    </details>
+    <details>
+      <summary>Puis-je changer de plan ou annuler ?</summary>
+      <div class="answer">À tout moment, en un clic depuis votre espace client. Le changement prend effet au cycle de facturation suivant. Aucun frais caché.</div>
+    </details>
+    <details>
+      <summary>Puis-je changer de coach en cours de route ?</summary>
+      <div class="answer">Oui, sur simple demande. Le bon matching humain est essentiel : nous vous proposons un nouveau coach sous 72h.</div>
+    </details>
+    <details>
+      <summary>En quoi est-ce différent d'une mission de conseil classique ?</summary>
+      <div class="answer">Pas de cadrage de 3 mois ni de facturation au jour-homme. Vous démarrez en une semaine, payez un tarif mensuel fixe et gardez la flexibilité d'arrêter quand vous voulez.</div>
+    </details>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="section-head">
+      <h2>Réservez votre session découverte gratuite</h2>
+      <p>45 minutes avec un coach senior pour évaluer vos enjeux. Sans engagement.</p>
+    </div>
+    <form id="contact-form">
+      <div class="field">
+        <label for="name">Nom complet</label>
+        <input type="text" id="name" required placeholder="Marie Dupont">
+      </div>
+      <div class="field">
+        <label for="email">E-mail professionnel</label>
+        <input type="email" id="email" required placeholder="marie@entreprise.com">
+      </div>
+      <div class="field">
+        <label for="topic">Expertise recherchée</label>
+        <select id="topic">
+          <option>Coaching Agile</option>
+          <option>Coaching Lean</option>
+          <option>Coaching RTE / SAFe</option>
+          <option>Je ne sais pas encore</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="msg">Votre contexte (optionnel)</label>
+        <textarea id="msg" rows="3" placeholder="Taille d'équipe, enjeux, échéances…"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%">Réserver ma session gratuite</button>
+      <div id="form-success">✓ Merci ! Nous revenons vers vous sous 24h ouvrées.</div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="container foot">
+    <p>© 2026 Golem — Coaching Lean, Agile & RTE. Tous droits réservés.</p>
+    <div class="foot-links">
+      <a href="#offres">Offres</a>
+      <a href="#tarifs">Tarifs</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('contact-form').addEventListener('submit',function(e){
+  e.preventDefault();
+  document.getElementById('form-success').style.display='block';
+  this.querySelector('button[type=submit]').disabled=true;
+});
+</script>
+
+</body>
+</html>
