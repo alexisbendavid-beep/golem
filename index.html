@@ -361,18 +361,23 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
       <h2>Réservez votre session découverte gratuite</h2>
       <p>45 minutes avec un coach senior pour évaluer vos enjeux. Sans engagement.</p>
     </div>
-    <form id="contact-form">
+    <form id="contact-form" action="https://formsubmit.co/alexis.bendavid@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="Nouveau contact Golem - session découverte">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="true">
+      <input type="hidden" name="_next" value="https://alexisbendavid-beep.github.io/golem/?sent=1">
+      <input type="text" name="_honey" style="display:none">
       <div class="field">
         <label for="name">Nom complet</label>
-        <input type="text" id="name" required placeholder="Marie Dupont">
+        <input type="text" id="name" name="Nom" required placeholder="Marie Dupont">
       </div>
       <div class="field">
         <label for="email">E-mail professionnel</label>
-        <input type="email" id="email" required placeholder="marie@entreprise.com">
+        <input type="email" id="email" name="Email" required placeholder="marie@entreprise.com">
       </div>
       <div class="field">
         <label for="topic">Expertise recherchée</label>
-        <select id="topic">
+        <select id="topic" name="Expertise">
           <option>Coaching Agile</option>
           <option>Coaching Lean</option>
           <option>Coaching RTE / SAFe</option>
@@ -381,7 +386,7 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
       </div>
       <div class="field">
         <label for="msg">Votre contexte (optionnel)</label>
-        <textarea id="msg" rows="3" placeholder="Taille d'équipe, enjeux, échéances…"></textarea>
+        <textarea id="msg" name="Contexte" rows="3" placeholder="Taille d'équipe, enjeux, échéances…"></textarea>
       </div>
       <button type="submit" class="btn btn-primary" style="width:100%">Réserver ma session gratuite</button>
       <div id="form-success">✓ Merci ! Nous revenons vers vous sous 24h ouvrées.</div>
@@ -402,11 +407,11 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
 </footer>
 
 <script>
-document.getElementById('contact-form').addEventListener('submit',function(e){
-  e.preventDefault();
-  document.getElementById('form-success').style.display='block';
-  this.querySelector('button[type=submit]').disabled=true;
-});
+// Affiche le message de succès si l'utilisateur revient avec ?sent=1 après envoi
+if(new URLSearchParams(location.search).get('sent')==='1'){
+  const s=document.getElementById('form-success');
+  if(s){s.style.display='block';s.scrollIntoView({behavior:'smooth',block:'center'});}
+}
 </script>
 
 </body>
